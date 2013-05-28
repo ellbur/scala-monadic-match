@@ -7,3 +7,4 @@
 !*.xml
 target
 
+.idea/workspace.xml
