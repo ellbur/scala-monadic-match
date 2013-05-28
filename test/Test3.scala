@@ -14,18 +14,12 @@ object Test3 {
   case class A(xs: List[Int]) extends AOrB
   case class B(xs: List[Int]) extends AOrB
 
-  object eA extends Extractor[AOrB, List[Int]] {
-    def extract(f: AOrB) = f match {
-      case A(xs) => some(xs).pure[List]
-      case B(_) => None.pure[List]
-    }
+  val eA = partial[AOrB] {
+    case A(xs) => xs
   }
 
-  object eB extends Extractor[AOrB, List[Int]] {
-    def extract(f: AOrB) = f match {
-      case A(_) => None.pure[List]
-      case B(xs) => some(xs).pure[List]
-    }
+  val eB = partial[AOrB] {
+    case B(xs) => xs
   }
 
   def main(args: Array[String]) {

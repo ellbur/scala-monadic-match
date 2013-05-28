@@ -61,6 +61,12 @@ trait MonadicMatch {
     def mmatch[To](e: Extractor[From, To]) = e.extract(x)
   }
 
+  def partial[A] = new {
+    def apply[B](f: PartialFunction[A, B]) = new Extractor[A, B] {
+      def extract(x: A) = f.lift(x).pure[M]
+    }
+  }
+
   def extract[From,By,To](x: From)(e: Extractor[From,By])(f: By => To): M[Option[To]] =
     e.extract(x) map (_ map f)
 }

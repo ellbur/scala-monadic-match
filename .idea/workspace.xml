@@ -5,10 +5,10 @@
     <ignored path="monadic-match.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Main.scala" changelist="7fac95ed-5156-4de2-97ae-e74a10c53aa9" time="1369705853653" ignored="false" />
-    <file path="/MonadicMatch.scala" changelist="7fac95ed-5156-4de2-97ae-e74a10c53aa9" time="1369707441888" ignored="false" />
+    <file path="/MonadicMatch.scala" changelist="7fac95ed-5156-4de2-97ae-e74a10c53aa9" time="1369708177432" ignored="false" />
     <file path="/Test1.scala" changelist="7fac95ed-5156-4de2-97ae-e74a10c53aa9" time="1369706315589" ignored="false" />
     <file path="/Test2.scala" changelist="7fac95ed-5156-4de2-97ae-e74a10c53aa9" time="1369707015797" ignored="false" />
-    <file path="/Test3.scala" changelist="7fac95ed-5156-4de2-97ae-e74a10c53aa9" time="1369707504056" ignored="false" />
+    <file path="/Test3.scala" changelist="7fac95ed-5156-4de2-97ae-e74a10c53aa9" time="1369708202454" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,10 +72,8 @@
       <file leaf-file-name="Test3.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/Test3.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="2" selection-start="642" selection-end="642" vertical-scroll-proportion="0.30656934">
-              <folding>
-                <element signature="e#1#16#0" expanded="true" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -441,10 +439,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/Test3.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="2" selection-start="642" selection-end="642" vertical-scroll-proportion="0.30656934">
-          <folding>
-            <element signature="e#1#16#0" expanded="true" />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
