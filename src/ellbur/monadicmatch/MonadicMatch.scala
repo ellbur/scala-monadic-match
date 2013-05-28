@@ -1,4 +1,6 @@
 
+package ellbur.monadicmatch
+
 import scalaz._
 import Scalaz._
 
@@ -6,8 +8,9 @@ trait MonadicMatch {
   type M[+X]
   implicit val monad: Monad[M]
 
-  trait Extractor[From,To] { self =>
+  trait Extractor[-From,+To] { self =>
     def extract(x: From): M[Option[To]]
+
     def apply[Next](e: Extractor[To,Next]): Extractor[From,Next] = new Extractor[From,Next] {
       def extract(x: From) = {
         val first = self.extract(x)
@@ -15,6 +18,22 @@ trait MonadicMatch {
           e.extract(first)
         }).sequence map (_.flatten))
       }
+    }
+
+    def ~>[Next](f: To => Next) = new Extractor[From, Next] {
+      def extract(x: From) = self.extract(x) map (_ map f)
+    }
+
+    def map[Next](f: To => Next) = this ~> f
+
+    def zip[From2,To2](other: Extractor[From2,To2]) = pair(self, other)
+
+    def |[From2<:From,To2>:To](other: Extractor[From2,To2]) = new Extractor[From2, To2] {
+      def extract(x: From2) =
+        self.extract(x) flatMap {
+          case Some(y) => Some(y).pure[M]
+          case None => other.extract(x)
+        }
     }
   }
 
@@ -36,6 +55,10 @@ trait MonadicMatch {
 
   def Id[A] = new Extractor[A, A] {
     def extract(x: A): M[Option[A]] = Some(x).pure[M]
+  }
+
+  implicit class MMatch[From](x: From) {
+    def mmatch[To](e: Extractor[From, To]) = e.extract(x)
   }
 
   def extract[From,By,To](x: From)(e: Extractor[From,By])(f: By => To): M[Option[To]] =
