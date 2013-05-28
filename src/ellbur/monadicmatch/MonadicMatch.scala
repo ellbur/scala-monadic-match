@@ -20,6 +20,8 @@ trait MonadicMatch {
       }
     }
 
+    def /[Next](e: Extractor[To,Next]): Extractor[From,Next] = apply(e)
+
     def ~>[Next](f: To => Next) = new Extractor[From, Next] {
       def extract(x: From) = self.extract(x) map (_ map f)
     }
@@ -75,4 +77,9 @@ trait MonadicMatch {
 
   def extract[From,By,To](x: From)(e: Extractor[From,By])(f: By => To): M[Option[To]] =
     e.extract(x) map (_ map f)
+
+  trait Unapply[From, To] extends Extractor[From, To] {
+    def unapply(x: From): Option[To]
+    def extract(x: From): M[Option[To]] = unapply(x).pure[M]
+  }
 }
