@@ -14,11 +14,11 @@ object Test3 {
   case class A(xs: List[Int]) extends AOrB
   case class B(xs: List[Int]) extends AOrB
 
-  val eA = partial[AOrB] {
+  val eA = any {
     case A(xs) => xs
   }
 
-  val eB = partial[AOrB] {
+  val eB = any {
     case B(xs) => xs
   }
 

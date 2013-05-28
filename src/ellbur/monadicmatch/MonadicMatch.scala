@@ -67,6 +67,12 @@ trait MonadicMatch {
     }
   }
 
+  def any = new {
+    def apply[B](f: PartialFunction[AnyRef, B]) = new Extractor[AnyRef, B] {
+      def extract(x: AnyRef) = f.lift(x).pure[M]
+    }
+  }
+
   def extract[From,By,To](x: From)(e: Extractor[From,By])(f: By => To): M[Option[To]] =
     e.extract(x) map (_ map f)
 }
