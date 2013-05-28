@@ -9,6 +9,8 @@ scalaVersion := "2.10.1-RC3"
 
 scalaSource in Compile <<= baseDirectory(_ / "src")
 
+scalaSource in Test <<= baseDirectory(_ / "test")
+
 libraryDependencies ++= Seq(
     "org.scalaz" %% "scalaz-core" % "6.0.4"
 )
