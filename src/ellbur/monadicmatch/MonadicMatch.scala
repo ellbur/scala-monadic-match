@@ -22,6 +22,10 @@ trait MonadicMatch {
 
     def /[Next](e: Extractor[To,Next]): Extractor[From,Next] = apply(e)
 
+    def when(t: To => Boolean) = new Extractor[From, To] {
+      def extract(x: From) = self.extract(x) map (_ filter t)
+    }
+
     def ~>[Next](f: To => Next) = new Extractor[From, Next] {
       def extract(x: From) = self.extract(x) map (_ map f)
     }
